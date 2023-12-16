@@ -34,7 +34,7 @@
 								?>
 									<h3 class="alert alert-warning alert-dismissible text-white fade show d-flex align-items-center justify-content-center mt-3" role="alert">
 										<?php echo $_GET['invalid'], "Invalid credentials."; ?>
-										<a href="room-number.php">
+										<a href="student-login.php">
 											<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
 										</a>
 									</h3>
@@ -59,7 +59,7 @@
                                     </div>
                                     <div class="starter-selet">
                                         <a class="fs-4" href="student-signup.php">
-											<button class="btn-custom w-25">Signup</button>
+											<button class="btn-custom w-25" type="button">Signup</button>
 										</a>
                                     </div>
                                 </div>
