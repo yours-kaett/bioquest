@@ -41,6 +41,7 @@
 									</h3>
 								<?php
 								}
+								
 							?>
 							<div class="d-flex justify-content-start">
 								<a href="../index.php" class="text-white fs-4">
