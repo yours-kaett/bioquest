@@ -47,7 +47,7 @@
                                     </div>
                                     <div class="starter-selet">
                                         <a class="fs-4" href="student-signup.php">
-											<button class="btn-custom w-25">Signup</button>
+											<button class="btn-custom w-25" type="button">Signup</button>
 										</a>
                                     </div>
                                 </div>
