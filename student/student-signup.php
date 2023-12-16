@@ -59,7 +59,9 @@
                                         <h6 class="bed"><i class="fa fa-user" aria-hidden="true"></i></h6>
                                     </div>
                                     <div class="starter-selet">
-                                        <a class="animated fs-4" href="student-login.php">Login</a>
+                                        <a class="fs-4" href="student-login.php">
+						<button class="btn-custom w-25" type="button">Login</button>
+					</a>
                                     </div>
                                 </div>
                             </div>
