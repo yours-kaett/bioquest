@@ -29,7 +29,19 @@
 							<input type="text" name="email" placeholder="Email" required>
 							<input type="text" name="student_id" placeholder="Student ID" required>
 							<input type="password" name="password" placeholder="Password" required>
-							<input type="submit" value="Create">
+							<button type="submit" class="btn-custom mt-4 w-25">Create</button>
+							<?php
+							if (isset($_GET['registered'])) {
+								?>
+									<h3 class="alert alert-warning alert-dismissible text-white fade show d-flex align-items-center justify-content-center mt-3" role="alert">
+										<?php echo $_GET['registered'], "Invalid credentials."; ?>
+										<a href="student-signup.php">
+											<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+										</a>
+									</h3>
+								<?php
+								}
+							?>
 							<div class="d-flex justify-content-start">
 								<a href="../index.php" class="text-white fs-4">
 									<i class="fa fa-arrow-left"></i>
