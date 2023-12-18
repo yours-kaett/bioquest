@@ -2,7 +2,7 @@
 include "../database-connection.php";
 session_start();
 if (isset($_POST["submit"])) {
-    $targetDir = "../uploads/";
+    $targetDir = "../modules/";
     $filename = basename($_FILES["fileToUpload"]["name"]);
     $targetFile = $targetDir . $filename;
     $tmp_name = $_FILES['fileToUpload']['tmp_name'];
