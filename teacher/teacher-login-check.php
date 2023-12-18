@@ -27,12 +27,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
             if ($row['username'] === $username && $row['password'] === $password) {
                 
                 $_SESSION['id'] = $row['id'];
-                $_SESSION['email'] = $row['email'];
-                $_SESSION['username'] = $row['username'];
-                $_SESSION['firstname'] = $row['firstname'];
-                $_SESSION['middlename'] = $row['middlename'];
-                $_SESSION['lastname'] = $row['lastname'];
-                $_SESSION['img_url'] = $row['img_url'];
                 date_default_timezone_set('Asia/Manila');
                 $date = date("F j, Y | l - h : i : s a");
                 $activity_logs = "You logged in on $date ";
@@ -41,9 +35,6 @@ if (isset($_POST['username']) && isset($_POST['password'])) {
                 $stmt->execute();
 
                 header("Location: teacher-dashboard.php");
-                exit();
-            } else {
-                header("Location: teacher-login.php?invalid");
                 exit();
             }
         } else {

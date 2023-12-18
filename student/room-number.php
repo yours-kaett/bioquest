@@ -3,19 +3,22 @@ include('../database-connection.php');
 session_start();
 if (isset($_SESSION['id'])) {
     $student_id = $_SESSION['id'];
+    $stmt = $conn->prepare('SELECT room_number FROM tbl_quiz WHERE room_number = ?');
+    $stmt->bind_param('i', $_GET['room_number']);
+    $stmt->execute();
+    $result=$stmt->get_result();
+    $row = $result->fetch_assoc();
+    $room_number = $row['room_number'];
 ?>
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <!-- ======= Head ======= -->
         <?php include '../other-includes/head.php' ?>
     </head>
 
     <body>
-        <!-- ======= Header ======= -->
         <?php include 'top-nav.php' ?>
-        <!-- ======= Sidebar ======= -->
         <?php include 'side-nav.php' ?>
 
         <div id="start">
@@ -65,7 +68,7 @@ if (isset($_SESSION['id'])) {
                                                 </div>
                                                 <div class="col-lg-12">
                                                     <div class="form-floating">
-                                                        <input type="number" name="room_number" class="form-control w-100" id="room_number" placeholder="" required>
+                                                        <input type="number" name="room_number" value="<?php echo $room_number ?>" class="form-control w-100" id="room_number" placeholder="" required>
                                                         <label for="room_number">Room #</label>
                                                     </div>
                                                 </div>

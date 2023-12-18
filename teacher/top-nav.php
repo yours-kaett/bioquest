@@ -15,7 +15,7 @@ $img_url = $row['img_url'];
     <div class="d-flex align-items-center justify-content-between">
         <a href="#" class="logo d-flex align-items-center">
             <img src="../assets/img/logo.png" alt="">
-            <span class="d-none d-lg-block">BioSLA</span>
+            <span class="d-none d-lg-block">BioQuest</span>
         </a>
         <i class="bi bi-list toggle-sidebar-btn"></i>
     </div>
@@ -44,7 +44,7 @@ $img_url = $row['img_url'];
                     </li>
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="logout.php">
-                            <i class="bi bi-box-arrow-right"></i>
+                            <i class="bi bi-power"></i>
                             <span>Sign Out</span>
                         </a>
                     </li>

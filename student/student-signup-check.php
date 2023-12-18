@@ -84,6 +84,6 @@ if (isset($_POST['email']) && isset($_POST['student_id']) && isset($_POST['passw
         // }
     }
 } else {
-    header("Location: student-signup.php");
+    header("Location: student-signup.php?unknown");
     exit();
 }

@@ -83,7 +83,7 @@ if (isset($_SESSION['id'])) {
                                                             <td>' . $all_items . '</td>
                                                             <td>Inst. ' . $firstname . " " . $middlename . " " . $lastname . '</td>
                                                             <td>
-                                                                <a href="room-number.php">
+                                                                <a href="room-number.php?room_number='. $room_number .'">
                                                                     <button class="btn-custom">
                                                                         Take Quiz
                                                                     </button>

@@ -30,24 +30,26 @@ if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['passwor
     $img_url = "default.jpg";
     date_default_timezone_set('Asia/Manila');
     $created_at = date("F j, Y | l - h : i : s a");
-    
-    $stmt = $conn->prepare(" SELECT * FROM tbl_teacher WHERE username = ? ");
-    $stmt->bind_param("s", $username);
+
+    $stmt = $conn->prepare(" SELECT auth_code FROM tbl_admin ");
     $stmt->execute();
     $result = $stmt->get_result();
-
-    if (mysqli_num_rows($result) > 0) {
-        header("Location: teacher-signup.php?warning");
+    $row = $result->fetch_assoc();
+    $auth_code = $row['auth_code'];
+    
+    if ($my_auth_code !== $auth_code ) {
+        header("Location: teacher-signup.php?invalid");
         exit();
     } else {
-        $stmt = $conn->prepare(" SELECT auth_code FROM tbl_admin ");
+        $stmt = $conn->prepare(" SELECT * FROM tbl_teacher WHERE username = ? ");
+        $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
-        $row = $result->fetch_assoc();
-        $auth_code = $row['auth_code'];
-        if ($my_auth_code !== $auth_code) {
-            header("Location: teacher-signup.php?invalid");
+        if (mysqli_num_rows($result) > 0) {
+
+            header("Location: teacher-signup.php?registered");
             exit();
+
         } else {
             $password = md5($password);
             $stmt = $conn->prepare("INSERT INTO tbl_teacher (email, username, password, firstname, middlename, lastname, img_url, created_at) 
@@ -90,6 +92,6 @@ if (isset($_POST['email']) && isset($_POST['username']) && isset($_POST['passwor
         }
     }
 } else {
-    header("Location: teacher-signup.php");
+    header("Location: teacher-signup.php?unknown");
     exit();
 }

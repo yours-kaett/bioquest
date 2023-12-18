@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css" media="all">
 	<link rel="stylesheet" href="../css/popup-box.css" type="text/css" media="all" />
 	<link rel="stylesheet" href="../css/style.css" type="text/css" media="all">
-    <link rel="icon" href="../images/logo.png">
+	<link rel="icon" href="../images/logo.png">
 	<link rel="stylesheet" href="../css/font-awesome.css">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Arapey:400,400i">
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300i,400,400i,600,600i,700">
@@ -25,46 +25,48 @@
 				<form action="student-login-check.php" method="post" class="start_form slideanim">
 					<div class="form">
 						<div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1">
-                            <img src="../images/logo.png" alt="NONESCOST LOGO">
-                            <input type="text" name="student_id" placeholder="Student ID" required>
-                            <input type="password" name="password" placeholder="Password" required>
-                            <button type="submit" class="btn-custom mt-4 w-25">Login</button>
+							<img src="../images/logo.png" alt="NONESCOST LOGO">
+							<input type="text" name="student_id" placeholder="Student ID" class="fs-4" required>
+							<input type="password" name="password" placeholder="Password" class="fs-4" required>
+							<button type="submit" class="btn-custom mt-4 w-50">Login</button>
+							<div class="d-flex justify-content-start mt-5">
+								<a href="../index.php" class="text-white fs-4">
+									<i class="fa fa-arrow-left"></i>
+									&nbsp; Back to main
+								</a>
+							</div>
 							<?php
 							if (isset($_GET['invalid'])) {
-								?>
-									<h3 class="alert alert-warning alert-dismissible text-white fade show d-flex align-items-center justify-content-center mt-3" role="alert">
-										<?php echo $_GET['invalid'], "Invalid credentials."; ?>
-										<a href="room-number.php">
-											<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-										</a>
-									</h3>
-								<?php
-								}
 							?>
-                            <div class="d-flex justify-content-start">
-                                <a href="../index.php" class="text-white fs-4">
-                                    <i class="fa fa-arrow-left"></i>
-                                    &nbsp; Back to main
-                                </a>
-                            </div>
+								<p class="d-flex align-items-center justify-content-between bg-danger text-white rounded-5 fs-3 p-3 mt-5">
+									<span></span>
+									<?php echo $_GET['invalid'], "Invalid student id or password."; ?>
+									<a href="student-login.php">
+										<button type="button" class="btn-close text-white fs-5" data-bs-dismiss="alert" aria-label="Close"></button>
+									</a>
+								</p>
+								
+							<?php
+							}
+							?>
 						</div>
-                        <div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1">
-                            <div class="starter-block agile">
-                                <div class="starter-gd-top">
-                                    <h3>Student</h3>
-                                </div>
-                                <div class="starter-gd-bottom">
-                                    <div class="starter-list">
-                                        <h6 class="bed"><i class="fa fa-user" aria-hidden="true"></i></h6>
-                                    </div>
-                                    <div class="starter-selet">
-                                        <a class="fs-4" href="student-signup.php">
-											<button class="btn-custom w-25">Signup</button>
+						<div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1">
+							<div class="starter-block agile">
+								<div class="starter-gd-top">
+									<h3>Student</h3>
+								</div>
+								<div class="starter-gd-bottom">
+									<div class="starter-list fs-3">
+										<h6 class="bed"><i class="fa fa-user" aria-hidden="true"></i></h6>
+									</div>
+									<div class="starter-selet">
+										<a class="fs-4" href="student-signup.php">
+											<button class="btn-custom w-50" type="button">Signup</button>
 										</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="clearfix"></div>
 					</div>
 				</form>

@@ -1,6 +1,6 @@
 :root {
-  --primary-color: #1999a2;
-    --secondary-color: #007b69;
+  --primary-color: #00c2a5;
+    --secondary-color: #004b40;
   scroll-behavior: smooth;
 }
 
@@ -8,7 +8,7 @@ body {
   color: #444444;
   margin: 0;
     font-family: 'Source Sans Pro', sans-serif;
-    background: #fff;
+    background: #000;
 }
 
 a {
@@ -281,7 +281,7 @@ h6 {
 .logo span {
   font-size: 26px;
   font-weight: 700;
-  color: #012970;
+  color: #00ffd9;
   font-family: "Nunito", sans-serif;
 }
 
@@ -290,7 +290,7 @@ h6 {
   z-index: 997;
   height: 60px;
   box-shadow: 0px 2px 20px rgba(1, 41, 112, 0.1);
-  background-color: #fff;
+  background-color: #008672bd;
   padding-left: 20px;
 }
 
@@ -298,7 +298,7 @@ h6 {
   font-size: 32px;
   padding-left: 10px;
   cursor: pointer;
-  color: #012970;
+  color: #00ffd9;
 }
 
 
@@ -316,13 +316,13 @@ h6 {
 
 .header-nav .nav-icon {
   font-size: 22px;
-  color: #012970;
+  color: #00ffd9;
   margin-right: 25px;
   position: relative;
 }
 
 .header-nav .nav-profile {
-  color: #012970;
+  color: #00ffd9;
 }
 
 .header-nav .nav-profile img {
@@ -458,7 +458,7 @@ h6 {
   scrollbar-width: thin;
   scrollbar-color: #aab7cf transparent;
   box-shadow: 0px 0px 20px rgba(1, 41, 112, 0.1);
-  background-color: #007b684c;
+  background-color: #008672bd;
 }
 
 @media (max-width: 1199px) {
@@ -534,7 +534,7 @@ h6 {
   font-weight: 600;
   color: #00fdd7;
   transition: 0.3;
-  background: linear-gradient(to bottom, #000 0%, var(--primary-color) 100%);
+  /* background-color: linear-gradient(to bottom, #000 0%, var(--primary-color) 100%); */
   padding: 10px 15px;
   border-radius: 4px;
 }
@@ -542,16 +542,16 @@ h6 {
 .sidebar-nav .nav-link i {
   font-size: 16px;
   margin-right: 10px;
-  color: #00fdd7;
+  color: #00c2a5;
 }
 
 .sidebar-nav .nav-link.collapsed {
-  color: var(--primary-color);
-  background: transparent;
+  color: #00c2a5;
+  background-color: #005347;
 }
 
 .sidebar-nav .nav-link.collapsed i {
-  color: var(--primary-color);
+  color: #00c2a5;
 }
 
 .sidebar-nav .nav-link:hover {
@@ -675,8 +675,29 @@ h6 {
   background: #e0f8e9;
 }
 
+.dashboard p, .dashboard h2, .dashboard h3, table th, table td, #timer {
+  color: #00ffd9;
+}
+
+table th{
+  color: #009982;
+}
+
+.dashboard fieldset label {
+  background-color: #004e43;
+}
+
+.dashboard fieldset label:hover {
+  background: linear-gradient(to bottom, #000 0%, var(--primary-color) 100%);
+}
+
+.dashboard fieldset input[type="radio"]:checked {
+  background: linear-gradient(to bottom, #000 0%, var(--primary-color) 100%);
+
+}
+
 /* Activity */
-.dashboard .activity {
+/* .dashboard .activity {
   font-size: 14px;
 }
 
@@ -720,7 +741,7 @@ h6 {
 
 .dashboard .activity .activity-item:last-child .activity-content {
   padding-bottom: 0;
-}
+} */
 
 /* ---- particles.js container ---- */
 
@@ -806,9 +827,10 @@ canvas.particles-js-canvas-el {
 
 .form-control {
   background-color: transparent !important;
+  color: #00c2a5 !important;
 }
 
-form input[type="number"]::placeholder, form label, form input[type="number"] {
+form input::placeholder, form label, form input {
   color: #00c2a5 !important;
 }
 
@@ -823,4 +845,60 @@ form .btn-submit {
 
 form .btn-submit:hover {
   background: linear-gradient(to bottom, #000 0%, var(--primary-color) 100%);
+}
+
+/* Custom */
+
+.btn-custom {
+  display: inline-block;
+  padding: 13px 25px;
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+  border: none;
+  border-radius: 35px;
+  cursor: pointer;
+  color: #fff;
+  background: linear-gradient(to right, #008672bd, #0583aaea);
+  background-size: 200% 100%;
+  transition: background-position 0.5s ease-in-out;
+
+}
+
+.btn-custom:hover {
+  background-position: right center;
+  animation: gradientMove 2s infinite alternate;
+  transition: background-position 0.5s ease-in-out;
+}
+
+@keyframes gradientMove {
+  to {
+      background-position: left center;
+  }
+}
+
+.btn-custom1 {
+  background-color: #004b40;
+  color: #fff;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-custom1:hover {
+  background: linear-gradient(to bottom, #000 0%, var(--primary-color) 100%);
+  transition: 0.5s;
+}
+
+.btn-wrong {
+  background-color: #7b0000;
+  color: #fff;
+  padding: 8px;
+  border-radius: 5px;
+  border: none;
+}
+
+.btn-wrong:hover {
+  background-color: #550000;
+  transition: 0.5s;
 }

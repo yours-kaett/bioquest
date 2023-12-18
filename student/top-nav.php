@@ -41,7 +41,7 @@ $img_url = $row['img_url'];
 
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="profile.php">
-                            <i class="bi bi-person"></i>
+                            <i class="bi bi-person-circle"></i>
                             <span>My Profile</span>
                         </a>
                     </li>
@@ -51,7 +51,7 @@ $img_url = $row['img_url'];
 
                     <li>
                         <a class="dropdown-item d-flex align-items-center" href="logout.php">
-                            <i class="bi bi-box-arrow-right"></i>
+                            <i class="bi bi-power"></i>
                             <span>Sign Out</span>
                         </a>
                     </li>

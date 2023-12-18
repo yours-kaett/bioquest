@@ -2,7 +2,7 @@
 include "../database-connection.php";
 session_start();
 
-if (isset($_POST['topic_title'])) {
+if ((isset($_POST['topic_title'])) && isset($_POST['module'])) {
 
     function validate($data)
     {
@@ -12,6 +12,7 @@ if (isset($_POST['topic_title'])) {
         return $data;
     }
     $topic_title = validate($_POST['topic_title']);
+    $module = validate($_POST['module']);
     $teacher_id = $_SESSION['id'];
     date_default_timezone_set('Asia/Manila');
     $created_at = date("F j, Y | l - h : i : s a");

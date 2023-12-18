@@ -73,8 +73,8 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->bind_param('i', $student_id);
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
-                                                $topic_items = mysqli_num_rows($result);
-                                                echo "<h6>$topic_items items &nbsp; <a href='classmates.php'><button class='btn-custom'>View</button></a></h6>";
+                                                $classmates = mysqli_num_rows($result);
+                                                echo "<h6>$classmates people &nbsp; <a href='classmates.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>

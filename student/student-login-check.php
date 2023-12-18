@@ -37,9 +37,6 @@ if (isset($_POST['student_id']) && isset($_POST['password'])) {
 
                 header("Location: student-dashboard.php");
                 exit();
-            } else {
-                header("Location: student-login.php?wrong");
-                exit();
             }
         } else {
             header("Location: student-login.php?invalid");

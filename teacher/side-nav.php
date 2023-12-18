@@ -2,34 +2,44 @@
     <ul class="sidebar-nav" id="sidebar-nav">
         <li class="nav-heading">Menu</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="teacher-dashboard.php">
-                <i class="bi bi-speedometer"></i>
-                <span>Dashboard</span>
+            <a href="teacher-dashboard.php">
+                <button class="d-flex align-items-center px-5 btn-custom w-100">
+                    <i class="bi bi-speedometer ms-1"></i>
+                    <span>&nbsp; Dashboard</span>
+                </button>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="modify-quiz.php">
-                <i class="bi bi-pencil-square"></i>
-                <span>Modify Quiz</span>
+            <a href="modify-quiz.php">
+                <button class="d-flex align-items-center px-5 btn-custom w-100">
+                    <i class="bi bi-pencil-square ms-1"></i>
+                    <span>&nbsp; Modify Quiz</span>
+                </button>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="topics.php">
-                <i class="bi bi-lightbulb"></i>
-                <span>Learning Materials</span>
+            <a href="topics.php">
+                <button class="d-flex align-items-center px-5 btn-custom w-100">
+                    <i class="bi bi-lightbulb ms-1"></i>
+                    <span>&nbsp; Learning Materials</span>
+                </button>
             </a>
         </li>
         <li class="nav-heading">Reports</li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="quizes.php">
-                <i class="bi bi-grid"></i>
-                <span>Quizes</span>
+            <a href="quizes.php">
+                <button class="d-flex align-items-center px-5 btn-custom w-100">
+                    <i class="bi bi-grid ms-1"></i>
+                    <span>&nbsp; Quizes</span>
+                </button>
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="students-masterlist.php">
-                <i class="bi bi-people"></i>
-                <span>Students Masterlist</span>
+            <a href="students-masterlist.php">
+                <button class="d-flex align-items-center px-5 btn-custom w-100">
+                    <i class="bi bi-people ms-1"></i>
+                    <span>&nbsp; Student Masterlist</span>
+                </button>
             </a>
         </li>
     </ul>

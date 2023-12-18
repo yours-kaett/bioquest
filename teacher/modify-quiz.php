@@ -7,151 +7,104 @@ if (isset($_SESSION['id'])) {
     $stmt->bind_param('i', $_GET['room_number']);
     $stmt->execute();
     $result = $stmt->get_result();
+    $rows = $result->fetch_assoc();
+    $section_id = $rows['section_id'];
+    $year_level = $rows['year_level'];
+    $room_number = $rows['room_number'];
+    $direction = $rows['direction'];
+
+    $stmt = $conn->prepare(' SELECT * FROM tbl_teacher WHERE id = ?');
+    $stmt->bind_param('i', $userId);
+    $stmt->execute();
+    $result = $stmt->get_result();
     $row = $result->fetch_assoc();
-    $section_id = $row['section_id'];
     $year_level = $row['year_level'];
-    $room_number = $row['room_number'];
-    $direction = $row['direction'];
+    $section = $row['section'];
 ?>
     <!DOCTYPE html>
     <html lang="en">
 
     <head>
-        <!-- ======= Head ======= -->
         <?php include '../other-includes/head.php' ?>
     </head>
 
     <body>
-        <!-- ======= Header ======= -->
         <?php include 'top-nav.php' ?>
-        <!-- ======= Sidebar ======= -->
         <?php include 'side-nav.php' ?>
-        <main id="main" class="main">
-            <div class="pagetitle">
-                <h1>Modify Quiz</h1>
-                <nav style="--bs-breadcrumb-divider: '•';">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">Menu</li>
-                        <li class="breadcrumb-item">Modify Quiz</li>
-                    </ol>
-                </nav>
+        <div id="start">
+            <div id="particles-js">
+                <main id="main">
+                    <div class="pagetitle">
+                        <h1>Modify Quiz</h1>
+                        <nav style="--bs-breadcrumb-divider: '•';">
+                            <ol class="breadcrumb">
+                                <li class="breadcrumb-item">Menu</li>
+                                <li class="breadcrumb-item">Modify Quiz</li>
+                            </ol>
+                        </nav>
+                    </div>
+                    <?php
+                    if (isset($_GET['error'])) {
+                    ?>
+                        <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center mb-4" role="alert">
+                            <div>
+                                <?php echo $_GET['error']; ?>
+                                <a href="modify-quiz.php">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </a>
+                            </div>
+                        </div>
+                    <?php
+                    }
+                    ?>
+                    <section class="section dashboard">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <form action="modify-quiz-check.php" method="POST" class="mb-4 w-100">
+                                    <div class="row mb-3">
+                                        <input type="number" name="year_level" value="<?php echo $year_level ?>" style="display: none;" required>
+                                        <input type="number" name="section_id" value="<?php echo $section ?>" style="display: none;" required>
+                                        <div class="col-lg-3 col-md-3 col-sm-3 mt-2">
+                                            <div class="form-floating">
+                                                <input type="number" name="room_number" id="room_number" value="<?php echo $room_number ?>" class="form-control" placeholder="" required>
+                                                <label for="room_number">Room number</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-8 col-md-8 col-sm-8 mt-2">
+                                            <div class="form-floating">
+                                                <input type="text" name="direction" id="direction" value="<?php echo $direction ?>" class="form-control" placeholder="" required>
+                                                <label for="direction">Include some direction for your quiz.</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div id="rows-container"></div>
+                                    <div class="col-lg-3">
+                                        <button class="btn btn-success rounded-5" style="padding: 12px;" id="addRow" type="button">
+                                            <i class="bi bi-plus-lg"></i>&nbsp; Add Item
+                                        </button>
+                                        <button class="btn-custom" type="submit">
+                                            <i class="bi bi-capslock"></i>&nbsp; Save
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </main>
             </div>
-
-            <!-- error -->
-            <?php
-            if (isset($_GET['error'])) {
-            ?>
-                <div class="alert alert-danger alert-dismissible fade show d-flex align-items-center justify-content-center mb-4" role="alert">
-                    <div>
-                        <?php echo $_GET['error']; ?>
-                        <a href="modify-quiz.php">
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </a>
-                    </div>
-                </div>
-            <?php
-            }
-            ?>
-
-            <section class="section dashboard">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <form action="modify-quiz-check.php" method="POST" class="mb-4 w-100">
-                            <div class="row mb-3">
-                                <div class="col-lg-2 col-md-2 col-sm-2 mt-2">
-                                    <div class="form-floating">
-                                        <?php
-                                        $stmt = $conn->prepare(' SELECT * FROM tbl_section WHERE id = ?');
-                                        $stmt->bind_param('i', $section_id);
-                                        $stmt->execute();
-                                        $result = $stmt->get_result();
-                                        $row = $result->fetch_assoc();
-                                        $section_id = $row['id'];
-                                        $section = $row['section'];
-                                        ?>
-                                        <select name="section_id" class="form-control" id="section_id">
-                                            <option class="text-center" value="<?php echo $section_id ?>" disabled selected><?php echo $section ?></option>
-                                            <?php
-                                            $none = "-";
-                                            $stmt = $conn->prepare(' SELECT * FROM tbl_section WHERE section <> ?');
-                                            $stmt->bind_param('s', $none);
-                                            $stmt->execute();
-                                            $result = $stmt->get_result();
-                                            while ($row = $result->fetch_assoc()) {
-                                                $id = $row['id'];
-                                                $section = $row['section'];
-                                                echo '<option value="' . $id  . '">' . $section . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="section">Section</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 mt-2">
-                                    <div class="form-floating">
-                                        <?php
-                                        $stmt = $conn->prepare(' SELECT * FROM tbl_year_level WHERE id = ?');
-                                        $stmt->bind_param('i', $year_level);
-                                        $stmt->execute();
-                                        $result = $stmt->get_result();
-                                        $row = $result->fetch_assoc();
-                                        $id = $row['id'];
-                                        $year_level = $row['year_level'];
-                                        ?>
-                                        <select name="year_level" class="form-control" id="year_level">
-                                            <option class="text-center" value="<?php echo $year_level ?>" disabled selected><?php echo $year_level ?></option>
-                                            <?php
-                                            $none = "-";
-                                            $stmt = $conn->prepare(' SELECT * FROM tbl_year_level WHERE year_level <> ?');
-                                            $stmt->bind_param('s', $none);
-                                            $stmt->execute();
-                                            $result = $stmt->get_result();
-                                            while ($row = $result->fetch_assoc()) {
-                                                $id = $row['id'];
-                                                $year_level = $row['year_level'];
-                                                echo '<option value="' . $id  . '">' . $year_level . '</option>';
-                                            }
-                                            ?>
-                                        </select>
-                                        <label for="seyear_levelction">Year Level</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-md-2 col-sm-2 mt-2">
-                                    <div class="form-floating">
-                                        <input type="number" name="room_number" id="room_number" value="<?php echo $room_number ?>" class="form-control" placeholder="" required>
-                                        <label for="room_number">Room number</label>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-8 col-sm-8 mt-2">
-                                    <div class="form-floating">
-                                        <input type="text" name="direction" id="direction" value="<?php echo $direction ?>" class="form-control" placeholder="" required>
-                                        <label for="direction">Include some direction for your quiz.</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <hr>
-                            <div id="rows-container"></div>
-                            <div class="col-lg-3">
-                                <button class="btn btn-primary" id="addRow" type="button">
-                                    <i class="bi bi-plus-lg"></i>&nbsp; Add Item
-                                </button>
-                                <button class="btn btn-success" type="submit">
-                                    <i class="bi bi-capslock"></i>&nbsp; Save
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </section>
-        </main>
+        </div>
 
         <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-        <!-- Scripts -->
-        <?php include '../other-includes/scripts.php' ?>
+        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+        <script src="assets/js/main.js"></script>
+        <script src="js/jquery-2.2.3.min.js"></script>
+        <script src="js/particles.js"></script>
+        <script src="js/app.js"></script>
 
         <?php
-        $get_item_number = $row['item_number'] + 1;
+        $get_item_number = $rows['item_number'] + 1;
         ?>
 
         <script>
