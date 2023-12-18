@@ -31,8 +31,8 @@ if (isset($_SESSION['id'])) {
                     <section class="section dashboard">
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card">
-                                    <div class="card-body">
+                                <div class="">
+                                    <div class="">
                                         <div class="py-3 px-3">
                                             <?php
                                             $stmt = $conn->prepare(' SELECT * FROM tbl_quiz_student WHERE room_number = ? AND student_id = ? ORDER BY item_number ASC');
@@ -52,19 +52,19 @@ if (isset($_SESSION['id'])) {
                                                 echo '<p>' . $question . '</p>';
                                                 if ($student_answer !== '' && $student_answer === $correct_answer) {
                                                     echo '
-                                                    <div class="btn-success btn rounded-0 d-flex align-items-center mb-4 p-2">
+                                                    <div class="bg-success text-white d-flex align-items-center mb-4 p-2">
                                                         <span class="fs-6"><i class="bi bi-check"></i></span>&nbsp; &nbsp;
                                                         ' . $student_answer . '
                                                     </div>';
                                                     $score += 1;
                                                 } else {
                                                     echo '
-                                                    <div class="btn-success btn rounded-0 d-flex align-items-center mb-2 p-2">
+                                                    <div class="bg-danger text-white rounded-0 d-flex align-items-center mb-2 p-2">
                                                         <span class="fs-6"><i class="bi bi-x"></i></span>&nbsp; &nbsp;
                                                         ' . $student_answer . '
                                                     </div>
-                                                    <div class="alert border-success d-flex align-items-center mb-4 p-2">
-                                                        <span class="text-white">Correct answer:</span>&nbsp; &nbsp;
+                                                    <div class="d-flex align-items-center mb-4 p-2">
+                                                        <span class="text-success">Correct answer:</span>&nbsp; &nbsp;
                                                         <span class="fw-bold text-white">' . $correct_answer . '</span>
                                                     </div>';
                                                     $score += 0;
@@ -73,14 +73,12 @@ if (isset($_SESSION['id'])) {
                                             if ($score === $total_items) {
                                                 echo '
                                                 <hr>
-                                                <div class="">
-                                                    <div class="d-flex flex-column align-items-center">
-                                                        <p>Here is your score</p>
-                                                        <h2>' . $score . ' / ' . $total_items . '</h2>
-                                                        <h3 class="mt-3" style="color: #eddd33;">
-                                                            <strong>[ P E R F E C T ]</strong>
-                                                        </h3>
-                                                    </div>
+                                                <div class="d-flex flex-column align-items-center">
+                                                    <p>Here is your score</p>
+                                                    <h2>' . $score . ' / ' . $total_items . '</h2>
+                                                    <h3 class="mt-3" style="color: #eddd33;">
+                                                        <strong>[ P E R F E C T ]</strong>
+                                                    </h3>
                                                 </div>';
                                             } else if ($score == 0) {
                                                 echo '
@@ -105,7 +103,7 @@ if (isset($_SESSION['id'])) {
 
                                             ?>
                                             <a href="student-dashboard.php">
-                                                <button class="btn-custom1">
+                                                <button class="btn btn-success rounded-5" style="padding: 12px;">
                                                     <i class="bi bi-chevron-double-left"></i>&nbsp;Back to Dashboard
                                                 </button>
                                             </a>
