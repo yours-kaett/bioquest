@@ -36,10 +36,20 @@ if (isset($_SESSION['id'])) {
 
                     <section class="section dashboard">
                         <?php
-                        if (isset($_GET['warning'])) {
+                        if (isset($_GET['error'])) {
                         ?>
                             <div class="alert alert-warning rounded-0 alert-dismissible fade show d-flex align-items-center justify-content-center w-100" role="alert">
-                                <?php echo $_GET['warning'], "Topic title already exist."; ?>
+                                <?php echo $_GET['error'], "Only PDF files with less than 100MB are allowed to upload"; ?>
+                                <a href="topics.php">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </a>
+                            </div>
+                        <?php
+                        }
+                        if (isset($_GET['topic_exist'])) {
+                        ?>
+                            <div class="alert alert-warning rounded-0 alert-dismissible fade show d-flex align-items-center justify-content-center w-100" role="alert">
+                                <?php echo $_GET['topic_exist'], "Topic already exist."; ?>
                                 <a href="topics.php">
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </a>
@@ -56,23 +66,65 @@ if (isset($_SESSION['id'])) {
                             </div>
                         <?php
                         }
+                        if (isset($_GET['not_uploaded'])) {
+                        ?>
+                            <div class="alert alert-danger rounded-0 alert-dismissible fade show d-flex align-items-center justify-content-center w-100" role="alert">
+                                <?php echo $_GET['not_uploaded'], "Your file was unable to upload."; ?>
+                                <a href="topics.php">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </a>
+                            </div>
+                        <?php
+                        }
+                        if (isset($_GET['file_exist'])) {
+                        ?>
+                            <div class="alert alert-warning rounded-0 alert-dismissible fade show d-flex align-items-center justify-content-center w-100" role="alert">
+                                <?php echo $_GET['file_exist'], "File already exist."; ?>
+                                <a href="topics.php">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </a>
+                            </div>
+                        <?php
+                        }
+
+                        if (isset($_GET['not_allowed'])) {
+                        ?>
+                            <div class="alert alert-warning rounded-0 alert-dismissible fade show d-flex align-items-center justify-content-center w-100" role="alert">
+                                <?php echo $_GET['not_allowed'], "Your file is not allowed to upload. Please select DOC, DOCX or PDF only."; ?>
+                                <a href="topics.php">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </a>
+                            </div>
+                        <?php
+                        }
+
+                        if (isset($_GET['unknown'])) {
+                        ?>
+                            <div class="alert alert-danger rounded-0 alert-dismissible fade show d-flex align-items-center justify-content-center w-100" role="alert">
+                                <?php echo $_GET['unknown'], "Unknown error occured."; ?>
+                                <a href="topics.php">
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                </a>
+                            </div>
+                        <?php
+                        }
                         ?>
                         <div class="row">
                             <div class="col-lg-12">
                                 <div class="card px-2">
-                                <div class="card-body">
+                                    <div class="card-body">
                                         <h5 class="card-title">Different Biology Topics</h5>
                                         <?php
                                         $stmt = $conn->prepare(' SELECT * FROM tbl_topics ORDER BY id DESC ');
                                         $stmt->execute();
                                         $result = $stmt->get_result();
-                                        while ($row = $result ->fetch_assoc()) {
+                                        while ($row = $result->fetch_assoc()) {
                                             $id = $row['id'];
                                             $topic_title = $row['topic_title'];
                                             echo '
                                             <a href="discussion.php?id=' . $id . '">
                                                 <button class="btn-custom text-start">
-                                                    ' . $topic_title .'
+                                                    ' . $topic_title . '
                                                 </button>
                                             </a>
                                             ';
@@ -86,7 +138,7 @@ if (isset($_SESSION['id'])) {
                     <div class="modal fade" id="addTopicModal" tabindex="-1" aria-labelledby="addTopicModalLabel" aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
                             <div class="modal-content p-1 bg-dark">
-                                <form action="add-topic-check.php" method="post" class="row p-2">
+                                <form action="add-topic-check.php" method="post" enctype="multipart/form-data" class="row p-2">
                                     <div class="modal-header">
                                         <h1 class="modal-title text-white fs-5" id="addTopicModalLabel">Add New Topic</h1>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
@@ -102,18 +154,18 @@ if (isset($_SESSION['id'])) {
                                             </div>
                                         </div>
                                         <div class="col-12 mb-2">
-                                            <label for="module">Import Module</label>
+                                            <label for="fileToUpload">Import Module</label>
                                             <div class="input-group">
                                                 <span class="input-group-text">
                                                     <i class="bi bi-journal"></i>
                                                 </span>
-                                                <input type="file" name="module" class="form-control" id="module" placeholder="Type here..." required />
+                                                <input type="file" name="fileToUpload" class="form-control" id="fileToUpload" placeholder="Type here..." required />
                                             </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-                                        <button type="submit" class="btn btn-success" id="loaderButton">
+                                        <button type="submit" name="submit" class="btn btn-success" id="loaderButton">
                                             <span id="submitBlank">
                                                 <span id="submit">Save</span>
                                             </span>
