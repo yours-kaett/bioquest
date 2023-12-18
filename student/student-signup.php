@@ -25,12 +25,12 @@
 				<form action="student-signup-check.php" method="post" class="start_form slideanim">
 					<div class="form">
 						<div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1">
-							<img src="../images/logo.png" alt="NONESCOST LOGO">
-							<input type="email" name="email" placeholder="Email" class="fs-4" required>
-							<input type="text" name="student_id" placeholder="Student ID" class="fs-4" required>
-							<input type="password" name="password" placeholder="Password" class="fs-4" required>
-							<button type="submit" class="btn-custom mt-4 w-50">Create</button>
-							<div class="d-flex justify-content-start mt-5">
+                            <img src="../images/logo.png" alt="NONESCOST LOGO">
+							<input type="text" name="email" placeholder="Email" required>
+							<input type="text" name="student_id" placeholder="Student ID" required>
+							<input type="password" name="password" placeholder="Password" required>
+							<button type="submit" class="btn-custom mt-4 w-25">Create</button>
+							<div class="d-flex justify-content-start">
 								<a href="../index.php" class="text-white fs-4">
 									<i class="fa fa-arrow-left"></i>
 									&nbsp; Back to main
@@ -72,23 +72,23 @@
 							}
 							?>
 						</div>
-						<div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1">
-							<div class="starter-block agile mt-5">
-								<div class="starter-gd-top">
-									<h3>Student</h3>
-								</div>
-								<div class="starter-gd-bottom">
-									<div class="starter-list">
-										<h6 class="bed"><i class="fa fa-user" aria-hidden="true"></i></h6>
-									</div>
-									<div class="starter-selet">
-										<a class="fs-4" href="student-login.php">
-											<button class="btn-custom w-50" type="button">Login</button>
+                        <div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1 mt-5">
+                            <div class="starter-block agile">
+                                <div class="starter-gd-top">
+                                    <h3>Student</h3>
+                                </div>
+                                <div class="starter-gd-bottom">
+                                    <div class="starter-list">
+                                        <h6 class="bed"><i class="fa fa-user" aria-hidden="true"></i></h6>
+                                    </div>
+                                    <div class="starter-selet">
+                                        <a class="fs-4" href="student-login.php">
+											<button class="btn-custom w-25" type="button">Login</button>
 										</a>
-									</div>
-								</div>
-							</div>
-						</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
 						<div class="clearfix"></div>
 					</div>
 				</form>

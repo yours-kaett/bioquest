@@ -45,7 +45,6 @@
 										<button type="button" class="btn-close text-white fs-5" data-bs-dismiss="alert" aria-label="Close"></button>
 									</a>
 								</p>
-								
 							<?php
 							}
 							?>

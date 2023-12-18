@@ -50,6 +50,7 @@
 							}
 							?>
 						</div>
+<<<<<<< HEAD
 						<div class="col-lg-6 col-md-6 col-sm-12 grid_6 c1">
 							<div class="starter-block agile">
 								<div class="starter-gd-top">

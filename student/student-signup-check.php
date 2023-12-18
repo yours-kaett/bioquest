@@ -43,6 +43,7 @@ if (isset($_POST['email']) && isset($_POST['student_id']) && isset($_POST['passw
     } else {
 
         $password = md5($password);
+        $acccount_status = 2; //Pending
         $stmt = $conn->prepare("INSERT INTO tbl_student (email, student_id, password, firstname, middlename, lastname, year_level, section, img_url, created_at) 
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
         $stmt->bind_param('ssssssiiss',$email, $student_id, $password, $firstname, $middlename, $lastname, $year_level, $section, $img_url, $created_at);
