@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 15, 2023 at 12:58 AM
+-- Generation Time: Dec 18, 2023 at 09:36 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -40,7 +40,29 @@ CREATE TABLE IF NOT EXISTS `tbl_admin` (
 --
 
 INSERT INTO `tbl_admin` (`id`, `admin_id`, `auth_code`) VALUES
-(1, '0cfae383362bc63d7ac429a5755fef05', '123');
+(1, 'd587f39fa514a8b9b227a6bdba0aa86c', '123');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_admin_logs`
+--
+
+DROP TABLE IF EXISTS `tbl_admin_logs`;
+CREATE TABLE IF NOT EXISTS `tbl_admin_logs` (
+  `id` int NOT NULL AUTO_INCREMENT,
+  `activity_logs` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `admin_id` int NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_admin_logs`
+--
+
+INSERT INTO `tbl_admin_logs` (`id`, `activity_logs`, `admin_id`) VALUES
+(1, 'You logged in on December 18, 2023 | Monday - 09 :', 1),
+(2, 'You logged in on December 18, 2023 | Monday - 09 : 21 : 09 am ', 1);
 
 -- --------------------------------------------------------
 
@@ -86,14 +108,15 @@ CREATE TABLE IF NOT EXISTS `tbl_quiz` (
   `created_at` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `updated_at` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=54 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=62 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_quiz`
 --
 
 INSERT INTO `tbl_quiz` (`id`, `year_level`, `section_id`, `room_number`, `direction`, `item_number`, `question`, `choice1`, `choice2`, `choice3`, `choice4`, `correct_answer`, `teacher_id`, `created_at`, `updated_at`) VALUES
-(53, 2, 2, 12345, 'qwertyuiop', 1, 'q1?', 'qqq', 'www', 'eee', 'rrr', 'rrr', 1, '-', '-');
+(61, 2, 2, 111, 'qwerty', 2, 'q2', 'aaa', 'sss', 'ddd', 'fff', 'sss', 1, 'December 18, 2023 | Monday - 11 : 41 : 46 am', ''),
+(60, 2, 2, 111, 'qwerty', 1, 'q1?', 'qq', 'ww', 'ee', 'rr', 'rr', 1, 'December 18, 2023 | Monday - 11 : 29 : 01 am', 'December 18, 2023 | Monday - 11:40:05 am');
 
 -- --------------------------------------------------------
 
@@ -109,7 +132,14 @@ CREATE TABLE IF NOT EXISTS `tbl_quiz_ranking` (
   `student_id` int NOT NULL,
   `img_url` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_quiz_ranking`
+--
+
+INSERT INTO `tbl_quiz_ranking` (`id`, `room_number`, `score`, `student_id`, `img_url`) VALUES
+(29, 111, 2, 11, 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -132,7 +162,15 @@ CREATE TABLE IF NOT EXISTS `tbl_quiz_student` (
   `correct_answer` text NOT NULL,
   `student_answer` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=150 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=183 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `tbl_quiz_student`
+--
+
+INSERT INTO `tbl_quiz_student` (`id`, `student_id`, `room_number`, `direction`, `item_number`, `question`, `choice1`, `choice2`, `choice3`, `choice4`, `correct_answer`, `student_answer`) VALUES
+(182, 11, 111, 'qwerty', 1, 'q1?', 'qq', 'ww', 'ee', 'rr', 'rr', 'rr'),
+(181, 11, 111, 'qwerty', 2, 'q2', 'aaa', 'sss', 'ddd', 'fff', 'sss', 'sss');
 
 -- --------------------------------------------------------
 
@@ -204,7 +242,7 @@ CREATE TABLE IF NOT EXISTS `tbl_student_logs` (
   `activity_logs` varchar(255) NOT NULL,
   `student_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=112 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=139 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_student_logs`
@@ -249,7 +287,34 @@ INSERT INTO `tbl_student_logs` (`id`, `activity_logs`, `student_id`) VALUES
 (108, 'You logged out on December 15, 2023 | Friday - 08 : 27 : 21 am ', 1),
 (109, 'You logged in on December 15, 2023 | Friday - 08 : 27 : 30 am ', 11),
 (110, 'You logged out on December 15, 2023 | Friday - 08 : 38 : 57 am ', 11),
-(111, 'You logged in on December 15, 2023 | Friday - 08 : 39 : 04 am ', 1);
+(111, 'You logged in on December 15, 2023 | Friday - 08 : 39 : 04 am ', 1),
+(112, 'You logged in on December 15, 2023 | Friday - 09 : 35 : 20 am ', 11),
+(113, 'You logged in on December 15, 2023 | Friday - 09 : 55 : 31 am ', 11),
+(114, 'You logged in on December 15, 2023 | Friday - 10 : 04 : 39 am ', 11),
+(115, 'You logged out on December 15, 2023 | Friday - 10 : 04 : 50 am ', 11),
+(116, 'You logged in on December 15, 2023 | Friday - 10 : 05 : 08 am ', 11),
+(117, 'You logged out on December 15, 2023 | Friday - 10 : 52 : 40 am ', 11),
+(118, 'You logged in on December 15, 2023 | Friday - 10 : 53 : 27 am ', 11),
+(119, 'You logged out on December 15, 2023 | Friday - 10 : 54 : 14 am ', 11),
+(120, 'You logged in on December 15, 2023 | Friday - 11 : 03 : 45 am ', 11),
+(121, 'You logged in on December 15, 2023 | Friday - 11 : 06 : 57 am ', 11),
+(122, 'You logged out on December 15, 2023 | Friday - 11 : 13 : 42 am ', 11),
+(123, 'You logged in on December 15, 2023 | Friday - 11 : 13 : 53 am ', 11),
+(124, 'You logged out on December 15, 2023 | Friday - 11 : 48 : 26 am ', 11),
+(125, 'You logged in on December 15, 2023 | Friday - 11 : 48 : 33 am ', 11),
+(126, 'You logged in on December 15, 2023 | Friday - 01 : 26 : 59 pm ', 11),
+(127, 'You logged out on December 15, 2023 | Friday - 02 : 44 : 54 pm ', 11),
+(128, 'You logged in on December 15, 2023 | Friday - 02 : 45 : 03 pm ', 11),
+(129, 'You logged in on December 15, 2023 | Friday - 04 : 16 : 22 pm ', 11),
+(130, 'You logged out on December 15, 2023 | Friday - 04 : 45 : 26 pm ', 11),
+(131, 'You logged in on December 15, 2023 | Friday - 04 : 46 : 06 pm ', 11),
+(132, 'You logged out on December 15, 2023 | Friday - 04 : 46 : 15 pm ', 11),
+(133, 'You logged in on December 15, 2023 | Friday - 05 : 01 : 16 pm ', 11),
+(134, 'You logged in on December 18, 2023 | Monday - 09 : 22 : 12 am ', 11),
+(135, 'You logged out on December 18, 2023 | Monday - 09 : 41 : 43 am ', 11),
+(136, 'You logged in on December 18, 2023 | Monday - 11 : 48 : 37 am ', 11),
+(137, 'You logged in on December 18, 2023 | Monday - 12 : 56 : 40 pm ', 11),
+(138, 'You logged out on December 18, 2023 | Monday - 01 : 49 : 36 pm ', 11);
 
 -- --------------------------------------------------------
 
@@ -297,19 +362,21 @@ CREATE TABLE IF NOT EXISTS `tbl_teacher` (
   `lastname` varchar(50) NOT NULL,
   `img_url` varchar(50) NOT NULL,
   `created_at` varchar(50) NOT NULL,
+  `year_level` int NOT NULL,
+  `section` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_teacher`
 --
 
-INSERT INTO `tbl_teacher` (`id`, `email`, `username`, `password`, `firstname`, `middlename`, `lastname`, `img_url`, `created_at`) VALUES
-(1, 'teacher1@test.com', 'teacher1', '41c8949aa55b8cb5dbec662f34b62df3', 'empty-first_name', 'empty-middle_name', 'empty-last_name', 'default.jpg', 'October 22, 2023 | Sunday - 08 : 55 : 51 pm'),
-(2, 'teacher2@test.com', 'teacher2', 'ccffb0bb993eeb79059b31e1611ec353', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'October 24, 2023 | Tuesday - 09 : 00 : 25 pm'),
-(3, 'teacher3@test.com', 'teacher3', '82470256ea4b80343b27afccbca1015b', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'October 26, 2023 | Thursday - 08 : 49 : 34 pm'),
-(4, 'teacher4@teacher4.com', 'teacher4', '93dacda950b1dd917079440788af3321', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'November 6, 2023 | Monday - 07 : 13 : 53 pm'),
-(6, 'teacher5@teacher5.com', 'teacher5', 'ea105f0d381e790cdadc6a41eb611c77', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'November 16, 2023 | Thursday - 10 : 46 : 35 pm');
+INSERT INTO `tbl_teacher` (`id`, `email`, `username`, `password`, `firstname`, `middlename`, `lastname`, `img_url`, `created_at`, `year_level`, `section`) VALUES
+(1, 'teacher1@test.com', 'teacher1', '41c8949aa55b8cb5dbec662f34b62df3', 'Juan', '', 'Dela Cruz', 'default.jpg', 'October 22, 2023 | Sunday - 08 : 55 : 51 pm', 2, 2),
+(2, 'teacher2@test.com', 'teacher2', 'ccffb0bb993eeb79059b31e1611ec353', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'October 24, 2023 | Tuesday - 09 : 00 : 25 pm', 0, 0),
+(3, 'teacher3@test.com', 'teacher3', '82470256ea4b80343b27afccbca1015b', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'October 26, 2023 | Thursday - 08 : 49 : 34 pm', 0, 0),
+(4, 'teacher4@teacher4.com', 'teacher4', '93dacda950b1dd917079440788af3321', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'November 6, 2023 | Monday - 07 : 13 : 53 pm', 0, 0),
+(6, 'teacher5@teacher5.com', 'teacher5', 'ea105f0d381e790cdadc6a41eb611c77', 'first_name', 'middle_name', 'last_name', 'default.jpg', 'November 16, 2023 | Thursday - 10 : 46 : 35 pm', 0, 0);
 
 -- --------------------------------------------------------
 
@@ -324,7 +391,7 @@ CREATE TABLE IF NOT EXISTS `tbl_teacher_logs` (
   `teacher_id` int NOT NULL,
   `account_status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=76 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=81 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_teacher_logs`
@@ -344,7 +411,12 @@ INSERT INTO `tbl_teacher_logs` (`id`, `activity_logs`, `teacher_id`, `account_st
 (72, 'You logged in on November 29, 2023 | Wednesday - 12 : 06 : 00 am ', 1, ''),
 (73, 'You logged out on November 29, 2023 | Wednesday - 12 : 13 : 55 am ', 1, ''),
 (74, 'You logged in on November 29, 2023 | Wednesday - 01 : 15 : 26 am ', 1, ''),
-(75, 'You logged out on November 29, 2023 | Wednesday - 01 : 15 : 40 am ', 1, '');
+(75, 'You logged out on November 29, 2023 | Wednesday - 01 : 15 : 40 am ', 1, ''),
+(76, 'You logged in on December 18, 2023 | Monday - 09 : 41 : 54 am ', 1, ''),
+(77, 'You logged in on December 18, 2023 | Monday - 09 : 51 : 27 am ', 1, ''),
+(78, 'You logged in on December 18, 2023 | Monday - 09 : 54 : 17 am ', 1, ''),
+(79, 'You logged out on December 18, 2023 | Monday - 11 : 48 : 30 am ', 1, ''),
+(80, 'You logged in on December 18, 2023 | Monday - 01 : 49 : 52 pm ', 1, '');
 
 -- --------------------------------------------------------
 
@@ -356,24 +428,22 @@ DROP TABLE IF EXISTS `tbl_topics`;
 CREATE TABLE IF NOT EXISTS `tbl_topics` (
   `id` int NOT NULL AUTO_INCREMENT,
   `topic_title` varchar(50) NOT NULL,
+  `filename` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `filepath` varchar(50) NOT NULL,
   `teacher_id` int NOT NULL,
   `created_at` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=57 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_topics`
 --
 
-INSERT INTO `tbl_topics` (`id`, `topic_title`, `teacher_id`, `created_at`) VALUES
-(3, 'First Topic', 1, ''),
-(4, 'Second Topic', 1, ''),
-(15, 'Genetics', 6, 'November 15, 2023 | Wednesday - 09 : 45 : 10 pm'),
-(14, 'Cell Biology', 6, 'November 15, 2023 | Wednesday - 09 : 45 : 00 pm'),
-(13, 'Fourth Topic', 2, '-'),
-(12, 'Third Topic', 2, '-'),
-(16, 'Evolutionary Biology', 6, 'November 15, 2023 | Wednesday - 09 : 45 : 18 pm'),
-(17, 'Ecology', 6, 'November 15, 2023 | Wednesday - 09 : 45 : 25 pm');
+INSERT INTO `tbl_topics` (`id`, `topic_title`, `filename`, `filepath`, `teacher_id`, `created_at`) VALUES
+(15, 'Genetics', '', '', 1, 'November 15, 2023 | Wednesday - 09 : 45 : 10 pm'),
+(14, 'Cell Biology', '', '', 1, 'November 15, 2023 | Wednesday - 09 : 45 : 00 pm'),
+(16, 'Evolutionary Biology', '', '', 1, 'November 15, 2023 | Wednesday - 09 : 45 : 18 pm'),
+(17, 'Ecology', '', '', 1, 'November 15, 2023 | Wednesday - 09 : 45 : 25 pm');
 
 -- --------------------------------------------------------
 
