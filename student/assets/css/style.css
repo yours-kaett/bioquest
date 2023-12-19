@@ -859,7 +859,7 @@ form .btn-submit:hover {
   border-radius: 35px;
   cursor: pointer;
   color: #fff;
-  background: linear-gradient(to right, #008672bd, #0583aaea);
+  background: linear-gradient(to right, #00ad93bd, #003546ea);
   background-size: 200% 100%;
   transition: background-position 0.5s ease-in-out;
 
@@ -869,6 +869,19 @@ form .btn-submit:hover {
   background-position: right center;
   animation: gradientMove 2s infinite alternate;
   transition: background-position 0.5s ease-in-out;
+}
+
+.topic-card{
+  display: inline-block;
+  background: linear-gradient(to right, #00ad93e5, #003546ea);
+  background-size: 200% 100%;
+  transition: background-position 0.5s ease-in-out;
+}
+
+.topic-card:hover {
+	background-position: right center;
+  animation: gradientMove 2s infinite alternate;
+  transition: background-position 0.9s ease-in-out;
 }
 
 @keyframes gradientMove {

@@ -9,6 +9,26 @@ if (isset($_SESSION['id'])) {
 
     <head>
         <?php include '../other-includes/head.php' ?>
+        <style>
+            .topic-card {
+                display: inline-block;
+                background: linear-gradient(to right, #00ad93e5, #003546ea);
+                background-size: 200% 100%;
+                transition: background-position 0.5s ease-in-out;
+            }
+
+            .topic-card:hover {
+                background-position: right center;
+                animation: gradientMove 2s infinite alternate;
+                transition: background-position 0.9s ease-in-out;
+            }
+
+            @keyframes gradientMove {
+                to {
+                    background-position: left center;
+                }
+            }
+        </style>
     </head>
 
     <body>
@@ -111,25 +131,31 @@ if (isset($_SESSION['id'])) {
                         ?>
                         <div class="row">
                             <div class="col-lg-12">
-                                <div class="card px-2">
+                                <div class="card px-2" style="background: none !important;">
                                     <div class="card-body">
-                                        <h5 class="card-title">Different Biology Topics</h5>
-                                        <?php
-                                        $stmt = $conn->prepare(' SELECT * FROM tbl_topics ORDER BY id DESC ');
-                                        $stmt->execute();
-                                        $result = $stmt->get_result();
-                                        while ($row = $result->fetch_assoc()) {
-                                            $id = $row['id'];
-                                            $topic_title = $row['topic_title'];
-                                            echo '
-                                            <a href="discussion.php?id=' . $id . '">
-                                                <button class="btn-custom text-start">
-                                                    ' . $topic_title . '
-                                                </button>
-                                            </a>
-                                            ';
-                                        }
-                                        ?>
+                                        <h5 class="card-title"></h5>
+                                        <div class="row">
+                                            <?php
+                                            $stmt = $conn->prepare(' SELECT * FROM tbl_topics WHERE teacher_id = ? ORDER BY id DESC ');
+                                            $stmt->bind_param('i', $teacher_id);
+                                            $stmt->execute();
+                                            $result = $stmt->get_result();
+                                            while ($row = $result ->fetch_assoc()) {
+                                                $id = $row['id'];
+                                                $topic_title = $row['topic_title'];
+                                                echo '
+                                                <div class="col-lg-3 col-md-3 col-sm-4 mb-2">
+                                                    <a href="download-module.php?id=' . $id . '">
+                                                        <div class="d-flex align-items-center flex-column rounded-3 topic-card pt-4">
+                                                            <img src="../images/word.png" alt="Microsoft Logo" style="width: 40%;" class="rounded">
+                                                            <h5 class="text-center text-white m-4">' . $topic_title .'</h5>
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                                ';
+                                            }
+                                            ?>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
