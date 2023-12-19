@@ -112,7 +112,7 @@ if (isset($_SESSION['id'])) {
                                     <div class="card-body">
                                         <h5 class="card-title">All Quizes</h5>
                                         <div class="table-responsive">
-                                            <table class="table table-hover" id="table">
+                                            <table class="table" id="table">
                                                 <colgroup>
                                                     <col width="20%">
                                                     <col width="20%">

@@ -3,7 +3,7 @@ include('../database-connection.php');
 session_start();
 if (isset($_SESSION['id'])) {
     $userId = $_SESSION['id'];
-    $stmt = $conn->prepare(' SELECT * FROM tbl_quiz WHERE room_number = ?');
+    $stmt = $conn->prepare(' SELECT * FROM tbl_quiz WHERE room_number = ? ORDER BY item_number DESC');
     $stmt->bind_param('i', $_GET['room_number']);
     $stmt->execute();
     $result = $stmt->get_result();
