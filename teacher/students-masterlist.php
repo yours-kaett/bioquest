@@ -47,7 +47,6 @@ if (isset($_SESSION['id'])) {
                                                         <th>Year_Level</th>
                                                         <th>Section</th>
                                                         <th>Student_ID</th>
-                                                        <th>Password</th>
                                                         <th>Email</th>
                                                     </tr>
                                                 </thead>
@@ -56,7 +55,6 @@ if (isset($_SESSION['id'])) {
                                                     $stmt = $conn->prepare(' SELECT
                                                     tbl_student.id,
                                                     tbl_student.student_id,
-                                                    tbl_student.password,
                                                     tbl_student.firstname,
                                                     tbl_student.middlename,
                                                     tbl_student.lastname,
@@ -71,7 +69,6 @@ if (isset($_SESSION['id'])) {
                                                     $result = $stmt->get_result();
                                                     while ($row = $result->fetch_assoc()) {
                                                         $student_id = $row['student_id'];
-                                                        $password = $row['password'];
                                                         $firstname = $row['firstname'];
                                                         $middlename = $row['middlename'];
                                                         $lastname = $row['lastname'];
@@ -84,7 +81,6 @@ if (isset($_SESSION['id'])) {
                                                                 <td>' . $year_level . '</td>
                                                                 <td>' . $section . '</td>
                                                                 <td>' . $student_id . '</td>
-                                                                <td>' . $password . '</td>
                                                                 <td>' . $email . '</td>
                                                             </tr>
                                                         ';

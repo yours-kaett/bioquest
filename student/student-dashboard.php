@@ -51,7 +51,7 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $topic_items = mysqli_num_rows($result);
-                                                echo "<h6>$topic_items items &nbsp; <a href='topics.php'><button class='btn-custom'>View</button></a></h6>";
+                                                echo "<h6>$topic_items &nbsp; <a href='topics.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $classmates = mysqli_num_rows($result);
-                                                echo "<h6>$classmates people &nbsp; <a href='classmates.php'><button class='btn-custom'>View</button></a></h6>";
+                                                echo "<h6>$classmates &nbsp; <a href='classmates.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>
@@ -96,7 +96,7 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $quizes = mysqli_num_rows($result);
-                                                echo "<h6>$quizes items &nbsp; <a href='available-quizes.php'><button class='btn-custom'>View</button></a></h6>";
+                                                echo "<h6>$quizes &nbsp; <a href='available-quizes.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>
@@ -153,7 +153,7 @@ if (isset($_SESSION['id'])) {
                                                             <td>' . $all_items . '</td>
                                                             <td>Inst. ' . $firstname . " " . $middlename . " " . $lastname . '</td>
                                                             <td>
-                                                                <a href="room-number.php">
+                                                                <a href="room-number.php?room_number=' . $room_number . '">
                                                                     <button class="btn-custom">Take Quiz</button>
                                                                 </a>
                                                             </td>

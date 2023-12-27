@@ -41,13 +41,19 @@ if (isset($_SESSION['id'])) {
                                             while ($row = $result ->fetch_assoc()) {
                                                 $id = $row['id'];
                                                 $topic_title = $row['topic_title'];
+                                                $filename = $row['filename'];
                                                 echo '
-                                                <div class="col-lg-3 col-md-3 col-sm-4 mb-2">
+                                                <div class="col-lg-2 col-md-2 col-sm-4 mb-2">
                                                     <a href="download-module.php?id=' . $id . '">
-                                                        <div class="d-flex align-items-center flex-column rounded-3 topic-card pt-4">
-                                                            <img src="../images/word.png" alt="Microsoft Logo" style="width: 40%;" class="rounded">
+                                                        <div class="d-flex align-items-center flex-column topic-card pt-4">
+                                                            <i class="bi bi-file-earmark-arrow-down" style="color: #fff; font-size: 65px;"></i>
                                                             <h5 class="text-center text-white m-4">' . $topic_title .'</h5>
                                                         </div>
+                                                    </a>
+                                                    <a href="https://docs.google.com/viewerng/viewer?url=http://localhost/bioquest/modules/'.$filename.'" target="_blank">
+                                                        <button class="btn btn-success rounded-0 w-100">
+                                                            <i class="bi bi-eye"></i>&nbsp; View Module
+                                                        </button>
                                                     </a>
                                                 </div>
                                                 ';

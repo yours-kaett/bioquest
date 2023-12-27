@@ -51,7 +51,7 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $topic_items = mysqli_num_rows($result);
-                                                echo "<h6>$topic_items items &nbsp; <a href='topics.php'><button class='btn-custom'>View</button></a></h6>";
+                                                echo "<h6>$topic_items &nbsp; <a href='topics.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>
@@ -74,7 +74,7 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $students = mysqli_num_rows($result);
-                                                echo "<h6>$students people &nbsp; <a href='students-masterlist.php'><button class='btn-custom'>View</button></a></h6>";
+                                                echo "<h6>$students &nbsp; <a href='students-masterlist.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>
@@ -97,7 +97,7 @@ if (isset($_SESSION['id'])) {
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $quizes = mysqli_num_rows($result);
-                                                echo "<h6>$quizes items &nbsp; <a href='quizes.php'><button class='btn-custom'>View</button></a></h6>";
+                                                echo "<h6>$quizes &nbsp; <a href='quizes.php'><button class='btn-custom'>View</button></a></h6>";
                                                 ?>
                                             </div>
                                         </div>

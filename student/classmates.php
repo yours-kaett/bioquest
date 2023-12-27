@@ -36,12 +36,15 @@ if (isset($_SESSION['id'])) {
 
                     <section class="section dashboard">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="card px-2">
                                     <div class="card-body">
                                         <h5 class="card-title"></h5>
                                         <div class="table-responsive">
                                             <table class="table">
+                                                <col width="30%">
+                                                <col width="30%">
+                                                <col width="30%">
                                                 <thead>
                                                     <tr>
                                                         <th>#</th>

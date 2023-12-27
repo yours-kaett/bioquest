@@ -8,7 +8,7 @@ if (isset($_POST["submit"])) {
     $tmp_name = $_FILES['fileToUpload']['tmp_name'];
     $uploadOk = 1;
     $imageFileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
-    $allowedExtensions = array("PDF", "doc", "docx");
+    $allowedExtensions = array("pdf", "docx", "doc");
     if (!in_array($imageFileType, $allowedExtensions)) {
         header("Location: topics.php?not_allowed");
         exit();
