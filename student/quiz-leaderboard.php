@@ -116,7 +116,7 @@ if (isset($_SESSION['id'])) {
                                                             </thead>
                                                             <tbody>
                                                                 <?php
-                                                                $stmt = $conn->prepare(' SELECT 
+                                                                $stmt = $conn->prepare('SELECT 
                                                                 tbl_quiz_ranking.img_url, 
                                                                 tbl_quiz_ranking.student_id, 
                                                                 tbl_quiz_ranking.room_number,
@@ -133,7 +133,9 @@ if (isset($_SESSION['id'])) {
                                                                 $result = $stmt->get_result();
 
                                                                 $rank = 0;
+                                                                $prevRank = 0; // Variable to store the previous rank
                                                                 $prevScore = PHP_INT_MAX;
+
                                                                 while ($row = $result->fetch_assoc()) {
                                                                     $img_url = $row['img_url'];
                                                                     $firstname = $row['firstname'];
@@ -141,9 +143,11 @@ if (isset($_SESSION['id'])) {
                                                                     $lastname = $row['lastname'];
                                                                     $score = $row['score'];
                                                                     $all_items = $row['all_items'];
+
                                                                     if ($score < $prevScore) {
-                                                                        $rank++;
+                                                                        $rank = $prevRank + 1;
                                                                     }
+
                                                                     echo '<tr>
                                                                             <td>' . $rank . '</td>
                                                                             <td>' . $score . " / " . $total_items . '</td>
@@ -152,6 +156,10 @@ if (isset($_SESSION['id'])) {
                                                                                 <img src="../assets/img/profiles/' . $img_url . '" style="width: 35px; height: 35px; border-radius: 50%;" alt="Challenger Profile" />
                                                                             </td>
                                                                         </tr>';
+
+                                                                    // Update the previous rank and score
+                                                                    $prevRank = $rank;
+                                                                    $prevScore = $score;
                                                                 }
                                                                 ?>
                                                             </tbody>
@@ -177,7 +185,7 @@ if (isset($_SESSION['id'])) {
         <script src="js/jquery-2.2.3.min.js"></script>
         <script src="js/particles.js"></script>
         <script src="js/app.js"></script>
-        
+
     </body>
 
     </html>
