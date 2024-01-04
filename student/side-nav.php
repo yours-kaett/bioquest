@@ -9,6 +9,14 @@
             </a>
         </li>
         <li class="nav-item">
+            <a href="simulations.php">
+                <button class="d-flex align-items-center px-5 btn-custom w-100">
+                    <i class="bi bi-steam ms-1"></i>
+                    <span>&nbsp; Simulations</span>
+                </button>
+            </a>
+        </li>
+        <li class="nav-item">
             <a href="room-number.php">
                 <button class="d-flex align-items-center px-5 btn-custom w-100">
                     <i class="bi bi-pencil-square ms-1"></i>

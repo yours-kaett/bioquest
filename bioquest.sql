@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 27, 2023 at 09:13 AM
+-- Generation Time: Jan 04, 2024 at 12:55 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -132,14 +132,16 @@ CREATE TABLE IF NOT EXISTS `tbl_quiz_ranking` (
   `student_id` int NOT NULL,
   `img_url` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=31 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=34 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_quiz_ranking`
 --
 
 INSERT INTO `tbl_quiz_ranking` (`id`, `room_number`, `score`, `student_id`, `img_url`) VALUES
-(30, 111, 2, 11, 'default.jpg');
+(33, 111, 1, 2, 'default.jpg'),
+(31, 111, 2, 11, 'default.jpg'),
+(32, 111, 2, 1, 'default.jpg');
 
 -- --------------------------------------------------------
 
@@ -162,15 +164,19 @@ CREATE TABLE IF NOT EXISTS `tbl_quiz_student` (
   `correct_answer` text NOT NULL,
   `student_answer` text NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=185 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=191 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_quiz_student`
 --
 
 INSERT INTO `tbl_quiz_student` (`id`, `student_id`, `room_number`, `direction`, `item_number`, `question`, `choice1`, `choice2`, `choice3`, `choice4`, `correct_answer`, `student_answer`) VALUES
-(184, 11, 111, 'qwerty', 1, 'q1?', 'qq', 'ww', 'ee', 'rr', 'rr', 'rr'),
-(183, 11, 111, 'qwerty', 2, 'q2', 'aaa', 'sss', 'ddd', 'fff', 'sss', 'sss');
+(189, 2, 111, 'qwerty', 2, 'q2', 'aaa', 'sss', 'ddd', 'fff', 'sss', 'fff'),
+(188, 1, 111, 'qwerty', 1, 'q1?', 'qq', 'ww', 'ee', 'rr', 'rr', 'rr'),
+(186, 11, 111, 'qwerty', 1, 'q1?', 'qq', 'ww', 'ee', 'rr', 'rr', 'rr'),
+(187, 1, 111, 'qwerty', 2, 'q2', 'aaa', 'sss', 'ddd', 'fff', 'sss', 'sss'),
+(185, 11, 111, 'qwerty', 2, 'q2', 'aaa', 'sss', 'ddd', 'fff', 'sss', 'sss'),
+(190, 2, 111, 'qwerty', 1, 'q1?', 'qq', 'ww', 'ee', 'rr', 'rr', 'rr');
 
 -- --------------------------------------------------------
 
@@ -242,7 +248,7 @@ CREATE TABLE IF NOT EXISTS `tbl_student_logs` (
   `activity_logs` varchar(255) NOT NULL,
   `student_id` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=159 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=171 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_student_logs`
@@ -334,7 +340,19 @@ INSERT INTO `tbl_student_logs` (`id`, `activity_logs`, `student_id`) VALUES
 (155, 'You logged out on December 19, 2023 | Tuesday - 01 : 11 : 44 pm ', 11),
 (156, 'You logged in on December 20, 2023 | Wednesday - 02 : 28 : 31 pm ', 11),
 (157, 'You logged in on December 27, 2023 | Wednesday - 03 : 55 : 44 pm ', 11),
-(158, 'You logged in on December 27, 2023 | Wednesday - 05 : 05 : 01 pm ', 11);
+(158, 'You logged in on December 27, 2023 | Wednesday - 05 : 05 : 01 pm ', 11),
+(159, 'You logged in on December 28, 2023 | Thursday - 01 : 52 : 39 pm ', 11),
+(160, 'You logged out on December 28, 2023 | Thursday - 01 : 55 : 44 pm ', 11),
+(161, 'You logged in on December 28, 2023 | Thursday - 01 : 55 : 51 pm ', 1),
+(162, 'You logged out on December 28, 2023 | Thursday - 02 : 02 : 06 pm ', 1),
+(163, 'You logged in on December 28, 2023 | Thursday - 02 : 02 : 13 pm ', 2),
+(164, 'You logged in on December 28, 2023 | Thursday - 04 : 13 : 07 pm ', 11),
+(165, 'You logged out on December 28, 2023 | Thursday - 04 : 13 : 50 pm ', 11),
+(166, 'You logged in on December 28, 2023 | Thursday - 04 : 14 : 42 pm ', 11),
+(167, 'You logged in on January 2, 2024 | Tuesday - 02 : 39 : 14 pm ', 11),
+(168, 'You logged out on January 2, 2024 | Tuesday - 02 : 39 : 19 pm ', 11),
+(169, 'You logged in on January 2, 2024 | Tuesday - 05 : 14 : 53 pm ', 11),
+(170, 'You logged in on January 4, 2024 | Thursday - 08 : 24 : 22 am ', 11);
 
 -- --------------------------------------------------------
 
@@ -411,7 +429,7 @@ CREATE TABLE IF NOT EXISTS `tbl_teacher_logs` (
   `teacher_id` int NOT NULL,
   `account_status` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=95 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=97 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `tbl_teacher_logs`
@@ -450,7 +468,9 @@ INSERT INTO `tbl_teacher_logs` (`id`, `activity_logs`, `teacher_id`, `account_st
 (91, 'You logged in on December 27, 2023 | Wednesday - 11 : 38 : 38 am ', 1, ''),
 (92, 'You logged in on December 27, 2023 | Wednesday - 04 : 38 : 51 pm ', 1, ''),
 (93, 'You logged in on December 27, 2023 | Wednesday - 04 : 56 : 23 pm ', 1, ''),
-(94, 'You logged out on December 27, 2023 | Wednesday - 05 : 04 : 55 pm ', 1, '');
+(94, 'You logged out on December 27, 2023 | Wednesday - 05 : 04 : 55 pm ', 1, ''),
+(95, 'You logged in on January 2, 2024 | Tuesday - 02 : 39 : 25 pm ', 1, ''),
+(96, 'You logged out on January 2, 2024 | Tuesday - 05 : 14 : 45 pm ', 1, '');
 
 -- --------------------------------------------------------
 

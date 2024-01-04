@@ -69,8 +69,8 @@ if (isset($_SESSION['id'])) {
                                             </div>
                                             <div class="ps-3">
                                                 <?php
-                                                $stmt = $conn->prepare('SELECT * FROM tbl_student WHERE id <> ?');
-                                                $stmt->bind_param('i', $student_id);
+                                                $stmt = $conn->prepare('SELECT * FROM tbl_student WHERE id <> ? AND year_level = ? AND section = ?');
+                                                $stmt->bind_param('iii', $student_id, $year_level, $section_id);
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $classmates = mysqli_num_rows($result);
@@ -92,7 +92,7 @@ if (isset($_SESSION['id'])) {
                                             </div>
                                             <div class="ps-3">
                                                 <?php
-                                                $stmt = $conn->prepare('SELECT * FROM tbl_quiz GROUP BY year_level, section_id');
+                                                $stmt = $conn->prepare('SELECT * FROM tbl_quiz GROUP BY room_number');
                                                 $stmt->execute();
                                                 $result = $stmt->get_result();
                                                 $quizes = mysqli_num_rows($result);
@@ -128,7 +128,7 @@ if (isset($_SESSION['id'])) {
                                                 </thead>
                                                 <tbody>
                                                     <?php
-                                                    $stmt = $conn->prepare(' SELECT 
+                                                    $stmt_quiz = $conn->prepare('SELECT 
                                                     tbl_quiz.room_number, 
                                                     COUNT(tbl_quiz.item_number) AS all_items,
                                                     tbl_teacher.firstname,
@@ -138,27 +138,45 @@ if (isset($_SESSION['id'])) {
                                                     INNER JOIN tbl_teacher ON tbl_quiz.teacher_id = tbl_teacher.id
                                                     WHERE tbl_quiz.year_level = ? AND tbl_quiz.section_id = ? 
                                                     GROUP BY tbl_quiz.room_number ');
-                                                    $stmt->bind_param('ii', $year_level, $section_id);
-                                                    $stmt->execute();
-                                                    $result = $stmt->get_result();
-                                                    while ($row = $result->fetch_assoc()) {
-                                                        $room_number = $row['room_number'];
-                                                        $all_items = $row['all_items'];
-                                                        $firstname = $row['firstname'];
-                                                        $middlename = $row['middlename'];
-                                                        $lastname = $row['lastname'];
+                                                    $stmt_quiz->bind_param('ii', $year_level, $section_id);
+                                                    $stmt_quiz->execute();
+                                                    $result_quiz = $stmt_quiz->get_result();
+                                                    while ($row_quiz = $result_quiz->fetch_assoc()) {
+                                                        $room_number = $row_quiz['room_number'];
+                                                        $all_items = $row_quiz['all_items'];
+                                                        $firstname = $row_quiz['firstname'];
+                                                        $middlename = $row_quiz['middlename'];
+                                                        $lastname = $row_quiz['lastname'];
+
+                                                        $stmt_student_quiz = $conn->prepare('SELECT student_answer FROM tbl_quiz_student WHERE room_number = ? AND student_id = ?');
+                                                        $stmt_student_quiz->bind_param('ii', $room_number, $student_id);
+                                                        $stmt_student_quiz->execute();
+                                                        $result_student_quiz = $stmt_student_quiz->get_result();
+                                                        $row_student_quiz = $result_student_quiz->fetch_assoc();
+
+                                                        if (!empty($row_student_quiz['student_answer'])) {
+                                                            $quiz_indicator = "none;";
+                                                            $board_indicator = "flex;";
+                                                        } else {
+                                                            $quiz_indicator = "flex;";
+                                                            $board_indicator = "none;";
+                                                        }
+
                                                         echo '
-                                                        <tr>
-                                                            <td>' . $room_number . '</td>
-                                                            <td>' . $all_items . '</td>
-                                                            <td>Inst. ' . $firstname . " " . $middlename . " " . $lastname . '</td>
-                                                            <td>
-                                                                <a href="room-number.php?room_number=' . $room_number . '">
-                                                                    <button class="btn-custom">Take Quiz</button>
-                                                                </a>
-                                                            </td>
-                                                        </tr>
-                                                        ';
+                                                            <tr>
+                                                                <td>' . $room_number . '</td>
+                                                                <td>' . $all_items . '</td>
+                                                                <td>Inst. ' . $firstname . " " . $middlename . " " . $lastname . '</td>
+                                                                <td>
+                                                                    <a href="quiz-leaderboard.php?room_number=' . $room_number . '" style="display: ' . $board_indicator . '">
+                                                                        <button class="btn-custom">Leaderboard</button>
+                                                                    </a>
+                                                                    <a href="room-number.php?room_number=' . $room_number . '" style="display: ' . $quiz_indicator . '">
+                                                                        <button class="btn-custom">Take Quiz</button>
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                            ';
                                                     }
                                                     ?>
                                                 </tbody>

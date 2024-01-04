@@ -159,13 +159,8 @@ if (isset($_SESSION['id'])) {
                                                         <td>' . $num_items . '</td>
                                                         <td>
                                                             <a href="view-quiz.php?room_number=' . $room_number . '" title="View Quiz">
-                                                                <button class="btn btn-outline-primary">
+                                                                <button class="btn btn-success">
                                                                     <i class="bi bi-eye"></i>
-                                                                </button>
-                                                            </a>
-                                                            <a href="delete-quiz.php?id=' . $id . '" title="Remove Quiz">
-                                                                <button class="btn btn-outline-danger">
-                                                                    <i class="bi bi-trash"></i>
                                                                 </button>
                                                             </a>
                                                         </td>

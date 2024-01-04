@@ -35,6 +35,9 @@ if (isset($_SESSION['id'])) {
                             </ol>
                         </nav>
                     </div>
+                    <a href="quizes.php" class="text-white">
+                        <i class="bi bi-arrow-left"></i>&nbsp; Back
+                    </a>
                     <section class="section dashboard">
                         <div class="row">
                             <div class="col-lg-12">

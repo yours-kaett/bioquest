@@ -28,6 +28,13 @@ if (isset($_SESSION['id'])) {
                     background-position: left center;
                 }
             }
+
+            /* .topic-title {
+                white-space: nowrap;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                max-width: 30ch;
+            } */
         </style>
     </head>
 
@@ -144,18 +151,18 @@ if (isset($_SESSION['id'])) {
                                                 $id = $row['id'];
                                                 $topic_title = $row['topic_title'];
                                                 $filename = $row['filename'];
+                                                $characterLimit = 20;
+                                                $truncatedTitle = substr($topic_title, 0, $characterLimit);
+                                                if (strlen($topic_title) > $characterLimit) {
+                                                    $truncatedTitle .= '...';
+                                                }
                                                 echo '
                                                 <div class="col-lg-2 col-md-2 col-sm-4 mb-2">
-                                                    <a href="download-module.php?id=' . $id . '">
-                                                        <div class="d-flex align-items-center flex-column topic-card pt-4">
+                                                    <a href="https://docs.google.com/viewerng/viewer?url=http://bioquest.rf.gd/modules/'.$filename.'" target="_blank">
+                                                        <div class="d-flex align-items-center flex-column topic-card rounded-2 pt-4">
                                                             <i class="bi bi-file-earmark-arrow-down" style="color: #fff; font-size: 65px;"></i>
-                                                            <h5 class="text-center text-white m-4">' . $topic_title .'</h5>
+                                                            <h6 class="topic-title text-center text-white m-4">' . $truncatedTitle .'</h6>
                                                         </div>
-                                                    </a>
-                                                    <a href="https://docs.google.com/viewerng/viewer?url=http://localhost/bioquest/modules/'.$filename.'" target="_blank">
-                                                        <button class="btn btn-success rounded-0 w-100">
-                                                            <i class="bi bi-eye"></i>&nbsp; View Module
-                                                        </button>
                                                     </a>
                                                 </div>
                                                 ';
