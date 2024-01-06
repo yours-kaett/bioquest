@@ -36,6 +36,18 @@
 								</a>
 							</div>
 							<?php
+
+							if (isset($_GET['pending'])) {
+							?>
+								<p class="d-flex align-items-center justify-content-between bg-warning text-primary rounded-5 fs-3 p-3 mt-5">
+									<span></span>
+									<?php echo $_GET['pending'], "You can't login with pending account."; ?>
+									<a href="student-login.php">
+										<button type="button" class="btn-close text-white fs-5" data-bs-dismiss="alert" aria-label="Close"></button>
+									</a>
+								</p>
+							<?php
+							}
 							if (isset($_GET['invalid'])) {
 							?>
 								<p class="d-flex align-items-center justify-content-between bg-danger text-white rounded-5 fs-3 p-3 mt-5">

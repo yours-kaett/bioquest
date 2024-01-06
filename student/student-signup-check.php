@@ -29,6 +29,7 @@ if (isset($_POST['email']) && isset($_POST['student_id']) && isset($_POST['passw
     $year_level = 5;
     $section = 5;
     $img_url = "default.jpg";
+    $account_status_id = 1;
     date_default_timezone_set('Asia/Manila');
     $created_at = date("F j, Y | l - h : i : s a");
     
@@ -44,9 +45,9 @@ if (isset($_POST['email']) && isset($_POST['student_id']) && isset($_POST['passw
 
         $password = md5($password);
         $acccount_status = 2; //Pending
-        $stmt = $conn->prepare("INSERT INTO tbl_student (email, student_id, password, firstname, middlename, lastname, year_level, section, img_url, created_at) 
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
-        $stmt->bind_param('ssssssiiss',$email, $student_id, $password, $firstname, $middlename, $lastname, $year_level, $section, $img_url, $created_at);
+        $stmt = $conn->prepare("INSERT INTO tbl_student (email, student_id, password, firstname, middlename, lastname, year_level, section, img_url, account_status_id, created_at) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?) ");
+        $stmt->bind_param('ssssssiisis', $email, $student_id, $password, $firstname, $middlename, $lastname, $year_level, $section, $img_url, $account_status_id, $created_at);
         $stmt->execute();
         $result = $stmt->get_result();
 

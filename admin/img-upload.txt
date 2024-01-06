@@ -1,0 +1,45 @@
+<?php
+include "../database-connection.php";
+session_start();
+if (isset($_POST["submit"])) {
+    function validate($data)
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+    $topic_title = validate($_POST['topic_title']);
+    $teacher_id = $_SESSION['id'];
+    date_default_timezone_set('Asia/Manila');
+    $created_at = date("F j, Y | l - h:i:s a");
+    $stmt = $conn->prepare("SELECT * FROM tbl_topics WHERE topic_title = ?");
+    $stmt->bind_param("s", $topic_title);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    if ($result->num_rows > 0) {
+        header("Location: topics.php?topic_exist");
+        exit();
+    } else {
+        $targetDir = "../uploads/";
+        $targetFile = $targetDir . basename($_FILES["fileToUpload"]["name"]);
+        $fileType = strtolower(pathinfo($targetFile, PATHINFO_EXTENSION));
+        if ($fileType != "pdf" || $_FILES["fileToUpload"]["size"] > 100000) {
+            header("Location: topics.php?error");
+            exit();
+        } else {
+            if(move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $targetFile)) {
+            $filename = $_FILES["fileToUpload"]["name"];
+            $folder_path = $targetDir;
+            $stmt = $conn->prepare("INSERT INTO tbl_topics (topic_title, filename, filepath, teacher_id, created_at) VALUES (?, ?, ?, ?, ?)");
+            $stmt->bind_param('sssis', $topic_title, $filename, $folder_path, $teacher_id, $created_at);
+            $stmt->execute();
+            header("Location: topics.php?success");
+            exit();
+            }
+        }
+    }
+} else {
+    header("Location: topics.php?not_uploaded");
+    exit();
+}

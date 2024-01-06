@@ -34,9 +34,8 @@ if (isset($_POST['admin_id']) && isset($_POST['auth_code'])) {
                 $stmt->bind_param('si', $activity_logs, $_SESSION['id']);
                 $stmt->execute();
 
-                // header("Location: admin-dashboard.php");
-                // exit();
-                echo 'Success!';
+                header("Location: dashboard.php");
+                exit();
             }
         } else {
             header("Location: admin-login.php?invalid");
